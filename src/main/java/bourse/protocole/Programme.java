@@ -98,9 +98,8 @@ public class Programme extends Protocole {
         NodeList programmes = msg.getChildNodes();
         listeProgramme = new LinkedList<ProgrammePro>();
         for (int i = 0; i < programmes.getLength(); i++) {
-            Element programme = (Element)programmes.item(i);
-            Element enchere = (Element)programme.getFirstChild();
-            ProgrammePro p = new ProgrammePro(Integer.parseInt(enchere.getAttribute("NUMERO")), new Livre((Element) enchere.getFirstChild()));
+            final Element enchere = (Element)programmes.item(i);
+            final ProgrammePro p = new ProgrammePro(Integer.parseInt(enchere.getAttribute("NUMERO")), new Livre((Element) enchere.getFirstChild()));
             this.listeProgramme.add(i, p);
         }
     }

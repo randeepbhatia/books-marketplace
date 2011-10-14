@@ -1,15 +1,11 @@
 package bourse.sdd;
 
+import static bourse.placeDeMarche.enchere.Enchere.ENCHERE_INCONNUE;
+import static bourse.placeDeMarche.enchere.Enchere.ENCHERE_UN;
 import static org.fest.assertions.Assertions.assertThat;
-
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import bourse.placeDeMarche.enchere.Enchere;
-
-import com.google.common.collect.Sets;
 
 public class ProgrammeProTest {
 
@@ -19,7 +15,7 @@ public class ProgrammeProTest {
     @Before
     public void createProgrammePro() {
         book = TestFactory.createLivre();
-        programmePro = new ProgrammePro(2, book, Enchere.ENCHERE_UN, 15.0f);
+        programmePro = new ProgrammePro(2, book, ENCHERE_UN, 15.0f);
     }
 
     @Test
@@ -28,7 +24,7 @@ public class ProgrammeProTest {
         assertThat(programmePro.getLivre()).isEqualTo(book);
         assertThat(programmePro.getNum()).isEqualTo(3);
         assertThat(programmePro.getPrixVente()).isEqualTo(0.0f);
-        assertThat(programmePro.getTypeEnchere()).isEqualTo(Enchere.ENCHERE_INCONNUE);
+        assertThat(programmePro.getTypeEnchere()).isEqualTo(ENCHERE_INCONNUE);
     }
 
     @Test
@@ -36,7 +32,7 @@ public class ProgrammeProTest {
         assertThat(programmePro.getLivre()).isEqualTo(book);
         assertThat(programmePro.getNum()).isEqualTo(2);
         assertThat(programmePro.getPrixVente()).isEqualTo(15.0f);
-        assertThat(programmePro.getTypeEnchere()).isEqualTo(Enchere.ENCHERE_UN);
+        assertThat(programmePro.getTypeEnchere()).isEqualTo(ENCHERE_UN);
     }
 
     @Test
@@ -63,16 +59,8 @@ public class ProgrammeProTest {
 
     @Test
     public void with_two_equals_programmePro() {
-        ProgrammePro programmePro2 = new ProgrammePro(2, book, Enchere.ENCHERE_UN, 15.0f);
+        ProgrammePro programmePro2 = new ProgrammePro(2, book, ENCHERE_UN, 15.0f);
         assertThat(programmePro.equals(programmePro2));
-    }
-
-    @Test
-    public void with_two_equals_programmePro_should_set_only_one_instance_in_a_set() {
-        Set<ProgrammePro> programmePros = Sets.newHashSet();
-        assertThat(programmePros.add(programmePro)).isTrue();
-        ProgrammePro programmePro2 = new ProgrammePro(2, book, Enchere.ENCHERE_UN, 15.0f);
-        assertThat(programmePros.add(programmePro2)).isFalse();
     }
 
 }
